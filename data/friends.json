@@ -1,6 +1,6 @@
 [{
   "id": "58030cc8d7b4a91ba225a34c",
-  "picture": "/images/1.jpeg",
+  "picture": "images/1.jpeg",
   "age": 22,
   "name": {
     "first": "Morgan",
@@ -10,7 +10,7 @@
   "phone": "+1 (997) 461-3306"
 }, {
   "id": "58030cc85c2e0d8a65a0547a",
-  "picture": "/images/2.jpeg",
+  "picture": "images/2.jpeg",
   "age": 35,
   "name": {
     "first": "Kent",
@@ -20,7 +20,7 @@
   "phone": "+1 (810) 570-3975"
 }, {
   "id": "58030cc8b418666804dd812e",
-  "picture": "/images/3.jpeg",
+  "picture": "images/3.jpeg",
   "age": 24,
   "name": {
     "first": "Mcclure",
@@ -30,7 +30,7 @@
   "phone": "+1 (851) 512-2972"
 }, {
   "id": "58030cc8ed950311394dbcaf",
-  "picture": "/images/4.jpeg",
+  "picture": "images/4.jpeg",
   "age": 33,
   "name": {
     "first": "Clements",
@@ -40,7 +40,7 @@
   "phone": "+1 (866) 527-2926"
 }, {
   "id": "58030cc82d74c2ff16f4a8d7",
-  "picture": "/images/5.jpeg",
+  "picture": "images/5.jpeg",
   "age": 40,
   "name": {
     "first": "Jarvis",
