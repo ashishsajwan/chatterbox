@@ -12,8 +12,16 @@ var FriendModel = Backbone.Model.extend({
  */
 var FriendsList = Backbone.Collection.extend({
   currentFriend: null,
+  chatHistory: [], // keeps history for current chat
   model: FriendModel,
   url: 'data/friends.json',
+  saveChat: function() {
+    localStorage.setItem(this.currentFriend, JSON.stringify(this.chatHistory));
+    this.chatHistory = [];
+  },
+  loadChat: function() {
+    this.chatHistory = JSON.parse(localStorage.getItem(this.currentFriend)) || [];
+  }
 });
 
 /**
@@ -76,18 +84,28 @@ var BodyView = Backbone.View.extend({
     });
   },
   loadFriendChat: function(e) {
+    var that = this;
+    this.collection.saveChat();
     var friendId = $(e.currentTarget).attr('data-friendid');
     this.collection.currentFriend = friendId;
+    this.collection.loadChat();
     var chatTemplate = _.template($('#Tpl-chat').html());
     $('#chat-container').html(chatTemplate(this.collection.get(friendId).toJSON()));
+
+    // put chat history aswell
+    _.each(this.collection.chatHistory, function(data, key) {
+      that.writeMessage(data);
+    });
   },
   sendMessage: function() {
     if (this.collection.currentFriend && $('#send-msg').val()) {
       var message = $('#send-msg').val();
-      this.writeMessage([{
+      var data = [{
         message: message,
         mine: true // mine coz sent by me
-      }]);
+      }];
+      this.collection.chatHistory.push(data);
+      this.writeMessage(data);
       $('#send-msg').val('');
       websocket.send(message);
     }
@@ -105,10 +123,12 @@ var BodyView = Backbone.View.extend({
     console.log('Closed', e);
   },
   socketMessage: function(e) {
-    this.writeMessage([{
+    var data = [{
       message: e.data,
       mine: false // mine false coz i didn't send this
-    }])
+    }];
+    this.collection.chatHistory.push(data);
+    this.writeMessage(data)
   },
   socketError: function(e) {
     console.log('ERROR', e);

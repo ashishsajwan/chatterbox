@@ -76,7 +76,7 @@
   background: #e6e6e6;
   border-radius: 3px;
 }
-#app-body-container .rightContent #chat-container #chat-box .message .theirs {
+#app-body-container .rightContent #chat-container #chat-box .message .mine {
   background: #DCF8C6;
   float: right;
 }
