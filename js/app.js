@@ -103,7 +103,6 @@ var BodyView = Backbone.View.extend({
     console.log('Closed', e);
   },
   socketMessage: function(e) {
-    console.log('Message', e.data);
     this.writeMessage([{
       message: e.data,
       mine: false // mine false coz i didn't send this
