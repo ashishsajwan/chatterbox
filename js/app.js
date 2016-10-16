@@ -35,7 +35,7 @@ var HeaderView = Backbone.View.extend({
  * for rendering Friends list, and chat column
  */
 var BodyView = Backbone.View.extend({
-  wsUri: "ws://echo.websocket.org/",
+  wsUri: "wss://echo.websocket.org/",
   websocket: null,
   events: {
     'enter #search-friends': 'searchFriends',
@@ -80,7 +80,7 @@ var BodyView = Backbone.View.extend({
     $('#chat-container').html(chatTemplate(this.collection.get(friendId).toJSON()));
   },
   sendMessage: function() {
-    if (this.collection.currentFriend) {
+    if (this.collection.currentFriend && $('#send-msg').val()) {
       var message = $('#send-msg').val();
       this.writeMessage([{
         message: message,
