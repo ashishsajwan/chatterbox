@@ -122,7 +122,7 @@
 </script>
 <script type="text/template" id="Tpl-message">
     <%
-    _.each(data,function(val,key){ console.log(val);%>
+    _.each(data,function(val,key){ %>
         <div class="message">
             <span class="<%=val.mine ?'mine':'theirs'%>"><%=val.message%></span>
         </div>

@@ -85,10 +85,16 @@ var BodyView = Backbone.View.extend({
   },
   loadFriendChat: function(e) {
     var that = this;
+    // lets save the chat done with this friend, before we switch to another friend
     this.collection.saveChat();
+
     var friendId = $(e.currentTarget).attr('data-friendid');
+    // set the id of this friend as currentFriend
     this.collection.currentFriend = friendId;
+
+    //load the chat with this friend
     this.collection.loadChat();
+
     var chatTemplate = _.template($('#Tpl-chat').html());
     $('#chat-container').html(chatTemplate(this.collection.get(friendId).toJSON()));
 
