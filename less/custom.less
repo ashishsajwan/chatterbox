@@ -29,14 +29,18 @@
 }
 
 #app-body-container {
+    > .row {
+        margin: 0;
+    }
+
     .leftContent {
         border-right: 2px solid #E6E6E6;
         padding: 10px;
-        height: calc(~"100vh - 150px");
+        height: calc(~"100vh - 75px");
 
         #friends-list {
             overflow: auto;
-            height: 100%;
+            height: calc(~"100% - 80px");
 
             .friend {
                 border-bottom: 1px solid #E6E6E6;

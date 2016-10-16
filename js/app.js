@@ -21,6 +21,7 @@ var FriendsList = Backbone.Collection.extend({
  * for rendering Header of the app
  */
 var HeaderView = Backbone.View.extend({
+  className: 'row valign-wrapper',
   initialize: function() {
     this.render();
   },
@@ -35,6 +36,7 @@ var HeaderView = Backbone.View.extend({
  * for rendering Friends list, and chat column
  */
 var BodyView = Backbone.View.extend({
+  className: 'row',
   wsUri: "wss://echo.websocket.org/",
   websocket: null,
   events: {
