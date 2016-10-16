@@ -93,6 +93,6 @@
   margin-right: 10px;
 }
 #app-body-container .pic img {
-  background: url("/images/photo.jpg") -3px -10px;
+  background: url("../images/photo.jpg") -3px -10px;
   height: 60px;
 }
