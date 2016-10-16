@@ -1,0 +1,122 @@
+::-webkit-scrollbar {
+    width: 0;
+    background: transparent;
+}
+
+#app-header-container {
+    padding: 10px;
+    border-bottom: 2px solid #E6E6E6;
+    //fix for mobile device
+    .row {
+        margin: auto;
+    }
+}
+
+#logo-container {
+    color: #26a69a;
+
+    i {
+        font-size: 32px;
+    }
+
+    .big {
+        font-size: 1.7em;
+    }
+
+    .small {
+        font-size: 0.8em;
+    }
+}
+
+#app-body-container {
+    .leftContent {
+        border-right: 2px solid #E6E6E6;
+        padding: 10px;
+        height: calc(~"100vh - 80px");
+
+        #friends-list {
+            overflow: auto;
+            height: 100%;
+
+            .friend {
+                border-bottom: 1px solid #E6E6E6;
+                padding: 5px;
+                cursor: pointer;
+
+                &:hover,
+                .active {
+                    background: #e6e6e6;
+                }
+            }
+        }
+
+        .name {
+            .black-text {
+                font-size: 1.5em;
+            }
+
+            .grey-text {
+                font-size: 0.8em;
+            }
+        }
+    }
+
+    .rightContent {
+        padding: 10px;
+
+        #chat-container {
+            height: calc(~"100vh - 190px");
+
+            .chatHeader {
+                background: #e6e6e6;
+                overflow: auto;
+                margin: -10px -22px;
+                padding: 5px;
+                margin-bottom: 2px;
+            }
+
+            #chat-box {
+                display: flex;
+                flex-direction: column-reverse;
+                height: calc(~"100% - 60px");
+                overflow: auto;
+
+                .message {
+                    margin: 5px 0;
+
+                    .mine,
+                    .theirs {
+                        padding: 5px 30px 5px 10px;
+                        background: #e6e6e6;
+                        border-radius: 3px;
+                    }
+
+                    .theirs {
+                        background: #DCF8C6;
+                        float: right;
+                    }
+                }
+            }
+        }
+
+        #send-btn {
+            background: #e6e6e6;
+            padding: 30px;
+            border-radius: 3px;
+            cursor: pointer;
+
+            &:hover {
+                background: #a6a6a6;
+            }
+        }
+    }
+
+    .pic {
+        margin-right: 10px;
+
+        img {
+            background: url("/images/photo.jpg") -3px -10px;
+            height: 60px;
+        }
+    }
+}

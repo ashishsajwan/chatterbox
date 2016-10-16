@@ -1,0 +1,95 @@
+::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+}
+#app-header-container {
+  padding: 10px;
+  border-bottom: 2px solid #E6E6E6;
+}
+#app-header-container .row {
+  margin: auto;
+}
+#logo-container {
+  color: #26a69a;
+}
+#logo-container i {
+  font-size: 32px;
+}
+#logo-container .big {
+  font-size: 1.7em;
+}
+#logo-container .small {
+  font-size: 0.8em;
+}
+#app-body-container .leftContent {
+  border-right: 2px solid #E6E6E6;
+  padding: 10px;
+  height: calc(100vh - 80px);
+}
+#app-body-container .leftContent #friends-list {
+  overflow: auto;
+  height: 100%;
+}
+#app-body-container .leftContent #friends-list .friend {
+  border-bottom: 1px solid #E6E6E6;
+  padding: 5px;
+  cursor: pointer;
+}
+#app-body-container .leftContent #friends-list .friend:hover,
+#app-body-container .leftContent #friends-list .friend .active {
+  background: #e6e6e6;
+}
+#app-body-container .leftContent .name .black-text {
+  font-size: 1.5em;
+}
+#app-body-container .leftContent .name .grey-text {
+  font-size: 0.8em;
+}
+#app-body-container .rightContent {
+  padding: 10px;
+}
+#app-body-container .rightContent #chat-container {
+  height: calc(100vh - 190px);
+}
+#app-body-container .rightContent #chat-container .chatHeader {
+  background: #e6e6e6;
+  overflow: auto;
+  margin: -10px -22px;
+  padding: 5px;
+  margin-bottom: 2px;
+}
+#app-body-container .rightContent #chat-container #chat-box {
+  display: flex;
+  flex-direction: column-reverse;
+  height: calc(100% - 60px);
+  overflow: auto;
+}
+#app-body-container .rightContent #chat-container #chat-box .message {
+  margin: 5px 0;
+}
+#app-body-container .rightContent #chat-container #chat-box .message .mine,
+#app-body-container .rightContent #chat-container #chat-box .message .theirs {
+  padding: 5px 30px 5px 10px;
+  background: #e6e6e6;
+  border-radius: 3px;
+}
+#app-body-container .rightContent #chat-container #chat-box .message .theirs {
+  background: #DCF8C6;
+  float: right;
+}
+#app-body-container .rightContent #send-btn {
+  background: #e6e6e6;
+  padding: 30px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+#app-body-container .rightContent #send-btn:hover {
+  background: #a6a6a6;
+}
+#app-body-container .pic {
+  margin-right: 10px;
+}
+#app-body-container .pic img {
+  background: url("/images/photo.jpg") -3px -10px;
+  height: 60px;
+}
