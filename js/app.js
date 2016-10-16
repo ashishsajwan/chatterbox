@@ -38,9 +38,10 @@ var BodyView = Backbone.View.extend({
   wsUri: "ws://echo.websocket.org/",
   websocket: null,
   events: {
+    'enter #search-friends': 'searchFriends',
     'click #friends-list .friend': 'loadFriendChat',
     'enter #send-msg': 'sendMessage',
-    'clicl #send-btn': 'sendMessage'
+    'click #send-btn': 'sendMessage'
   },
   initialize: function() {
     // listen to sync event on collection and then render the firneds list
@@ -53,13 +54,22 @@ var BodyView = Backbone.View.extend({
     this.$el.html(_.template($('#Tpl-body').html()));
     $('#app-body-container').html(this.el);
   },
+  searchFriends: function(e) {
+    var searchTerm = $(e.currentTarget).val().toLowerCase();
+    this.renderFriendsList(_.filter(this.collection.models, function(model) {
+      var name = model.get('name');
+      name = name.first + ' ' + name.last;
+      return (name.toLowerCase().indexOf(searchTerm) != -1);
+    }));
+  },
   // render the log list
-  renderFriendsList: function() {
+  renderFriendsList: function(friendsList) {
+    var friendsList = _.isArray(friendsList) ? friendsList : friendsList.models;
     var friendTemplate = _.template($('#Tpl-friend').html());
-
+    $('#friends-list').empty();
     // render list if collection has some models
 
-    _.each(this.collection.models, function(model) {
+    _.each(friendsList, function(model) {
       $('#friends-list').append(friendTemplate(model.toJSON()));
     });
   },
@@ -107,7 +117,7 @@ var BodyView = Backbone.View.extend({
 $(document).ready(function() {
   // capturing enter key on inputs and firing enter event
   // so that pressing enter of msg box works
-  $('#app-body-container').on('keyup', '#send-msg', function(e) {
+  $('#app-body-container').on('keyup', '#send-msg,#search-friends', function(e) {
     if (e.keyCode == 13) {
       $(this).trigger('enter');
     }
