@@ -24,7 +24,7 @@
 #app-body-container .leftContent {
   border-right: 2px solid #E6E6E6;
   padding: 10px;
-  height: calc(100vh - 80px);
+  height: calc(100vh - 150px);
 }
 #app-body-container .leftContent #friends-list {
   overflow: auto;
@@ -49,7 +49,7 @@
   padding: 10px;
 }
 #app-body-container .rightContent #chat-container {
-  height: calc(100vh - 190px);
+  height: calc(100vh - 200px);
 }
 #app-body-container .rightContent #chat-container .chatHeader {
   background: #e6e6e6;
