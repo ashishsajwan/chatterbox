@@ -16,11 +16,18 @@ var FriendsList = Backbone.Collection.extend({
   model: FriendModel,
   url: 'data/friends.json',
   saveChat: function() {
-    localStorage.setItem(this.currentFriend, JSON.stringify(this.chatHistory));
-    this.chatHistory = [];
+    /**
+     * save only when we have currentFriend Id - this prevents saving null
+     * when opening a chat first time
+     */
+
+    if (this.currentFriend) {
+      localStorage.setItem('CH-' + this.currentFriend, JSON.stringify(this.chatHistory));
+      this.chatHistory = [];
+    }
   },
   loadChat: function() {
-    this.chatHistory = JSON.parse(localStorage.getItem(this.currentFriend)) || [];
+    this.chatHistory = JSON.parse(localStorage.getItem('CH-' + this.currentFriend)) || [];
   }
 });
 
