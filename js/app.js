@@ -14,7 +14,7 @@ var FriendsList = Backbone.Collection.extend({
   currentFriend: null,
   chatHistory: [], // keeps history for current chat
   model: FriendModel,
-  url: 'data/friends.json',
+  url: 'https://rawgit.com/ashishsajwan/chatterbox/master/data/friends.json',
   saveChat: function(data) {
     var data = data || null;
     if (_.isNull(data)) {
