@@ -15,15 +15,26 @@ var FriendsList = Backbone.Collection.extend({
   chatHistory: [], // keeps history for current chat
   model: FriendModel,
   url: 'data/friends.json',
-  saveChat: function() {
-    /**
-     * save only when we have currentFriend Id - this prevents saving null
-     * when opening a chat first time
-     */
+  saveChat: function(data) {
+    var data = data || null;
+    if (_.isNull(data)) {
+      /**
+       * save only when we have currentFriend Id - this prevents saving null
+       * when opening a chat first time
+       */
 
-    if (this.currentFriend) {
-      localStorage.setItem('CH-' + this.currentFriend, JSON.stringify(this.chatHistory));
-      this.chatHistory = [];
+      if (this.currentFriend) {
+        localStorage.setItem('CH-' + this.currentFriend, JSON.stringify(this.chatHistory));
+        this.chatHistory = [];
+      }
+    } else {
+      /**
+       *  if we got data as argument that means it's a passive message
+       *  lets save it to localStorage for intended Friend
+       */
+      var chatHistory = JSON.parse(localStorage.getItem('CH-' + data.to)) || [];
+      chatHistory.push(data.message);
+      localStorage.setItem('CH-' + data.to, JSON.stringify(chatHistory));
     }
   },
   loadChat: function() {
@@ -120,7 +131,10 @@ var BodyView = Backbone.View.extend({
       this.collection.chatHistory.push(data);
       this.writeMessage(data);
       $('#send-msg').val('');
-      websocket.send(message);
+      websocket.send(JSON.stringify({
+        message: message,
+        to: this.collection.currentFriend
+      }));
     }
   },
   writeMessage: function(data) {
@@ -136,12 +150,24 @@ var BodyView = Backbone.View.extend({
     console.log('Closed', e);
   },
   socketMessage: function(e) {
+    var reply = JSON.parse(e.data);
+
     var data = [{
-      message: e.data,
+      message: reply.message,
       mine: false // mine false coz i didn't send this
     }];
-    this.collection.chatHistory.push(data);
-    this.writeMessage(data)
+    //handle this message as active only if it's for current friend
+    if (reply.to == this.collection.currentFriend) {
+      this.collection.chatHistory.push(data);
+      this.writeMessage(data);
+    } else {
+      // treat message as passsive , and write it to localStorage directly for
+      // the perticular friend it is intended to
+      this.collection.saveChat({
+        message: data,
+        to: reply.to
+      });
+    }
   },
   socketError: function(e) {
     console.log('ERROR', e);
